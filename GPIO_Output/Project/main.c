@@ -21,7 +21,7 @@ int main(void)
 	gpio_pin_remap_config(GPIO_SWJ_NONJTRST_REMAP, ENABLE);//下载口NJTRST引脚当做普通I/O口
 	rcu_periph_clock_enable(RCU_GPIOB);//PB时钟使能
 	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_4);//PB4配置成输出
-
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5);//PB5配置成输出
 	while(1)
 	{
 		delay_1ms(1000);//等待1000ms
