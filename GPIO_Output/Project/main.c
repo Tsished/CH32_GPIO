@@ -1,10 +1,10 @@
 /***************************************************************************//**
-  �ļ�: main.c
-  ����: Zhengyu https://gzwelink.taobao.com
-  �汾: V1.0.0
-  ʱ��: 202101201
-	ƽ̨:MINI-GD32F303RCT6������
-	΢�ź�:gzwelink
+  文件: main.c
+  作者: Zhengyu https://gzwelink.taobao.com
+  版本: V1.0.0
+  时间: 202101201
+	平台:MINI-GD32F303RCT6开发板
+	微信号:gzwelink
 
 *******************************************************************************/
 
@@ -14,24 +14,25 @@
 
 int main(void)
 {
-	rcu_ahb_clock_config(RCU_AHB_CKSYS_DIV1);//������Ƶ120M(#define __SYSTEM_CLOCK_120M_PLL_HXTAL           (uint32_t)(120000000),8M�ⲿ����  (#define HXTAL_VALUE    ((uint32_t)8000000))
+	rcu_ahb_clock_config(RCU_AHB_CKSYS_DIV1);//设置主频120M(#define __SYSTEM_CLOCK_120M_PLL_HXTAL           (uint32_t)(120000000),8M外部晶振  (#define HXTAL_VALUE    ((uint32_t)8000000))
 	systick_config();//1ms systick
-	rcu_periph_clock_enable(RCU_AF); //AFʱ��ʹ�� 
-	delay_1ms(1000);//�ȴ�1000ms
-	gpio_pin_remap_config(GPIO_SWJ_NONJTRST_REMAP, ENABLE);//���ؿ�NJTRST���ŵ�����ͨI/O��
-	rcu_periph_clock_enable(RCU_GPIOB);//PBʱ��ʹ��
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_4);//PB4���ó����
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5);//PB5���ó����
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_6);//PB6���ó����
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);//PB7���ó����
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_8);//PB8���ó����
-	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_9);//PB9���ó����
+	rcu_periph_clock_enable(RCU_AF); //AF时钟使能 
+	delay_1ms(1000);//等待1000ms
+	gpio_pin_remap_config(GPIO_SWJ_NONJTRST_REMAP, ENABLE);//下载口NJTRST引脚当做普通I/O口
+	rcu_periph_clock_enable(RCU_GPIOB);//PB时钟使能
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_4);//PB4配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5);//PB5配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_6);//PB6配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);//PB7配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_8);//PB8配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_9);//PB9配置成输出
+	gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_10);//PB10配置成输出
 	while(1)
 	{
-		delay_1ms(1000);//�ȴ�1000ms
-		gpio_bit_set(GPIOB, GPIO_PIN_4);//�����
+		delay_1ms(1000);//等待1000ms
+		gpio_bit_set(GPIOB, GPIO_PIN_4);//输出高
 		delay_1ms(1000);
-		gpio_bit_reset(GPIOB, GPIO_PIN_4);//�����
+		gpio_bit_reset(GPIOB, GPIO_PIN_4);//输出低
 	}
 	return 0;
 }
